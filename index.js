@@ -58,14 +58,14 @@ function updateColorSelection(selectedInput) {
   colorLabels.forEach((label) => {
     label.className = "cursor-pointer";
     const colorDiv = label.querySelector("div");
-    colorDiv.className = `flex shrink-0 w-4 h-4 px-0.5 py-0.5  rounded-full ${getBackgroundColorClass(
+    colorDiv.className = `flex shrink-0 w-4 h-4   rounded-full ${getBackgroundColorClass(
       label.getAttribute("for")
     )}`;
   });
 
   const selectedLabel = selectedInput.nextElementSibling;
   selectedLabel.className =
-    "flex flex-col justify-center p-0.5 w-6 h-6 rounded-full border-2 border-solid cursor-pointer";
+    "flex flex-col justify-center items-center w-5 h-5 rounded-full border-2 border-solid cursor-pointer";
   selectedLabel.style.borderColor = getBorderColor(selectedInput.id);
 }
 
@@ -223,10 +223,10 @@ function createCartItemRow(item) {
       <div class="flex grow shrink gap-2 justify-center items-center self-stretch my-auto min-w-[240px] w-[266px]" role="cell">
         <img loading="lazy" src="${item.image}" alt="${
     item.color
-  } Classy Modern Smart watch" class="object-contain shrink-0 self-stretch my-auto w-9 rounded aspect-square" />
-        <div class="flex-1 shrink self-stretch my-auto basis-0">Classy Modern Smart watch</div>
+  } Classy Modern Smart watch" class="object-contain shrink-0 self-stretch font-normal my-auto w-9 rounded aspect-square" />
+        <div class="flex-1 shrink self-stretch my-auto basis-0 font-normal">Classy Modern Smart watch</div>
       </div>
-      <div class="grow shrink self-stretch my-auto text-center text-slate-700 w-[50px]" role="cell">${
+      <div class="grow shrink self-stretch my-auto text-center text-slate-700 w-[50px] font-normal" role="cell">${
         item.color
       }</div>
       <div class="grow shrink self-stretch my-auto text-center w-[57px]" role="cell">${
