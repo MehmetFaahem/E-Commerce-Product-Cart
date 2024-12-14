@@ -58,7 +58,7 @@ function updateColorSelection(selectedInput) {
   colorLabels.forEach((label) => {
     label.className = "cursor-pointer";
     const colorDiv = label.querySelector("div");
-    colorDiv.className = `flex shrink-0 w-4 h-4   rounded-full ${getBackgroundColorClass(
+    colorDiv.className = `flex flex-col justify-center items-center w-4 h-4 rounded-full ${getBackgroundColorClass(
       label.getAttribute("for")
     )}`;
   });
@@ -220,22 +220,22 @@ function updateCartModal() {
 function createCartItemRow(item) {
   return `
     <div class="flex flex-wrap items-center pr-1 pb-4 mt-4 w-full text-sm border-b border-zinc-200 text-slate-700 max-md:max-w-full" role="row">
-      <div class="flex grow shrink gap-2 justify-center items-center self-stretch my-auto min-w-[240px] w-[266px]" role="cell">
+      <div class="flex grow shrink gap-2 items-center self-stretch my-auto w-full sm:w-[266px] sm:min-w-[240px] max-sm:mb-2" role="cell">
         <img loading="lazy" src="${item.image}" alt="${
     item.color
-  } Classy Modern Smart watch" class="object-contain shrink-0 self-stretch font-normal my-auto w-9 rounded aspect-square" />
-        <div class="flex-1 shrink self-stretch my-auto basis-0 font-normal">Classy Modern Smart watch</div>
+  } Classy Modern Smart watch" class="object-contain shrink-0 self-stretch font-normal my-auto w-9 rounded aspect-square max-sm:hidden" />
+        <div class="flex-1 shrink self-stretch my-auto basis-0 font-normal max-md:hidden">Classy Modern Smart watch</div>
       </div>
-      <div class="grow shrink self-stretch my-auto text-center text-slate-700 w-[50px] font-normal" role="cell">${
+      <div class="grow shrink self-stretch my-auto text-center text-slate-700 w-1/4 sm:w-[50px] font-normal" role="cell">${
         item.color
       }</div>
-      <div class="grow shrink self-stretch my-auto text-center w-[57px]" role="cell">${
+      <div class="grow shrink self-stretch my-auto text-center w-1/4 sm:w-[57px] " role="cell">${
         item.size
       }</div>
-      <div class="grow shrink self-stretch my-auto text-center w-[47px]" role="cell">${
+      <div class="grow shrink self-stretch my-auto text-center w-1/4 sm:w-[47px]" role="cell">${
         item.quantity
       }</div>
-      <div class="grow shrink self-stretch my-auto text-right w-[79px]" role="cell">$${item.price.toFixed(
+      <div class="grow shrink self-stretch my-auto text-right w-1/4 sm:w-[79px]" role="cell">$${item.price.toFixed(
         2
       )}</div>
     </div>

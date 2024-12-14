@@ -321,7 +321,7 @@
       style="z-index: 0"
     >
       <div
-        class="flex flex-col p-11 max-w-full bg-white rounded-3xl w-[651px] max-md:px-5"
+        class="flex flex-col p-11 mx-4 max-w-full max-md:w-[90%] max-md:mx-auto w-[651px] bg-white rounded-3xl max-md:p-6 max-sm:p-4"
         role="region"
         aria-label="Cart Details"
       >
@@ -336,31 +336,31 @@
           aria-label="Cart Header"
         >
           <div
-            class="grow shrink self-stretch my-auto w-[266px]"
+            class="grow shrink self-stretch my-auto w-[266px] max-sm:w-full max-sm:mb-2 max-sm:hidden"
             role="columnheader"
           >
             Item
           </div>
           <div
-            class="grow shrink self-stretch my-auto text-center w-[50px]"
+            class="grow shrink self-stretch my-auto text-center w-[50px] max-sm:w-1/4"
             role="columnheader"
           >
             Color
           </div>
           <div
-            class="grow shrink self-stretch my-auto text-center w-[57px]"
+            class="grow shrink self-stretch my-auto text-center w-[57px] max-sm:w-1/4"
             role="columnheader"
           >
             Size
           </div>
           <div
-            class="grow shrink self-stretch my-auto text-center w-[47px]"
+            class="grow shrink self-stretch my-auto text-center w-[47px] max-sm:w-1/4"
             role="columnheader"
           >
             Qnt
           </div>
           <div
-            class="grow shrink self-stretch my-auto text-right w-[79px]"
+            class="grow shrink self-stretch my-auto text-right w-[79px] max-sm:w-1/4"
             role="columnheader"
           >
             Price
@@ -368,11 +368,13 @@
         </div>
         <div class="cart-items-container"></div>
         <div
-          class="flex flex-wrap gap-10 justify-between items-end mt-4 w-full tracking-normal leading-9 whitespace-nowrap text-slate-700 max-md:max-w-full"
+          class="flex flex-wrap gap-5 justify-between items-end mt-4 w-full tracking-normal leading-9 whitespace-nowrap text-slate-700 max-md:max-w-full"
           role="row"
           aria-label="Cart Total"
         >
-          <div class="text-base leading-none text-neutral-700 w-[379px]">
+          <div
+            class="text-base leading-none text-neutral-700 w-[379px] max-sm:w-full"
+          >
             Total
           </div>
           <div class="total-quantity text-sm">0</div>
@@ -382,15 +384,17 @@
           class="flex justify-end pt-2.5 mt-4 w-full text-sm tracking-wide leading-loose max-md:max-w-full"
           id="cart-actions"
         >
-          <div class="flex gap-6 items-center">
+          <div
+            class="flex gap-6 items-center flex-wrap max-sm:w-full max-sm:justify-center"
+          >
             <button
-              class="overflow-hidden gap-2.5 px-5 py-2 rounded border border-solid border-zinc-200 text-slate-700"
+              class="overflow-hidden gap-2.5 px-5 py-2 rounded border border-solid border-zinc-200 text-slate-700 max-sm:w-full max-sm:mb-2"
               aria-label="Continue Shopping"
             >
               Continue Shopping
             </button>
             <button
-              class="overflow-hidden gap-2.5 px-5 py-2 text-white whitespace-nowrap bg-indigo-500 rounded"
+              class="overflow-hidden gap-2.5 px-5 py-2 text-white whitespace-nowrap bg-indigo-500 rounded max-sm:w-full"
               aria-label="Proceed to Checkout"
             >
               Checkout
