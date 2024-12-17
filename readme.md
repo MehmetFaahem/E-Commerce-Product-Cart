@@ -4,9 +4,9 @@
 
 - [Live Demo](https://e-commerce-product-cart-react-js.vercel.app/)
 
-## ReactJS Version
+## ReactJS Repository
 
-- [ReactJS Version](https://github.com/MehmetFaahem/E-Commerce-Product-CartReactJS)
+- [ReactJS Repository](https://github.com/MehmetFaahem/E-Commerce-Product-CartReactJS)
 
 ## Getting Started
 
