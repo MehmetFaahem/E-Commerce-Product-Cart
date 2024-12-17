@@ -3,406 +3,246 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
   </head>
-  <body class="bg-white relative">
-    <div
-      class="flex flex-col justify-center px-4 md:px-72 pt-5 w-full max-md:px-5 max-md:pt-10"
-      role="main"
-      aria-label="Product Details"
-    >
+  <body>
+    <div class="min-h-screen bg-gray-50">
       <div
-        class="flex flex-col md:flex-row gap-10 items-center w-full min-h-[600px]"
+        class="relative min-h-screen bg-white px-4 sm:px-6 lg:px-8 max-md:pb-20"
       >
-        <div
-          class="flex overflow-hidden flex-col bg-white rounded w-full md:w-1/2"
-        >
-          <img
-            loading="lazy"
-            src="./assets/1.png"
-            alt="Classy Modern Smart Watch Product Image"
-            class="product-main-image object-contain w-full h-auto"
-          />
-        </div>
-        <div class="flex flex-col flex-1 mt-5 md:mt-0 w-full">
-          <div class="flex flex-col w-full max-md:max-w-full">
-            <h1
-              class="self-start py-3 text-3xl font-bold tracking-tighter leading-none text-slate-700 max-md:max-w-full"
-            >
-              Classy Modern Smart watch
-            </h1>
-            <div
-              class="flex flex-wrap gap-2 items-center pr-1 pb-1 w-full max-md:max-w-full"
-            >
+        <div class="mx-auto max-w-7xl py-8">
+          <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            <div class="w-full lg:w-1/2">
               <div
-                class="flex gap-1.5 items-start self-stretch my-auto"
-                role="group"
-                aria-label="Product Rating"
+                class="aspect-square relative overflow-hidden rounded-md bg-gray-100"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="#ffd200"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                    d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"
-                  ></path>
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="#ffd200"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                    d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"
-                  ></path>
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="#ffd200"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                    d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"
-                  ></path>
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="#ffd200"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                    d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"
-                  ></path>
-                </svg>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="#ffd200"
-                  viewBox="0 0 256 256"
-                >
-                  <path
-                    d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"
-                  ></path>
-                </svg>
-              </div>
-              <div
-                class="self-stretch my-auto text-sm leading-6 text-slate-400"
-                aria-label="Review Count"
-              >
-                (2 Reviews)
+                <img
+                  id="productImage"
+                  alt="Classy Modern Smart Watch Product Image"
+                  class="h-full w-full object-cover object-center"
+                  src="./assets/1.png"
+                />
               </div>
             </div>
-            <div class="flex items-baseline gap-2 mt-4">
-              <div
-                class="text-xl text-slate-400 line-through"
-                aria-label="Original Price"
-              >
-                $99.00
-              </div>
-              <div
-                class="text-2xl font-bold text-indigo-500"
-                aria-label="Sale Price"
-              >
-                $79.00
-              </div>
-            </div>
-            <p class="mt-4 text-lg text-slate-400">
-              I must explain to you how all this mistaken idea of denoun cing
-              ple praising pain was born and I will give you a complete account
-              of the system, and expound the actual teaching.
-            </p>
-            <div class="flex flex-col md:flex-row gap-6 mt-5">
-              <div class="flex flex-col self-stretch my-auto whitespace-nowrap">
-                <div class="text-sm leading-6 text-slate-400">Type</div>
-                <div class="text-base font-bold leading-none text-slate-700">
-                  Watch
-                </div>
-              </div>
-              <div class="flex flex-col self-stretch my-auto">
-                <div class="text-sm leading-6 text-slate-400">Model Number</div>
-                <div class="text-base font-bold leading-none text-slate-700">
-                  Forerunner 290XT
-                </div>
-              </div>
-            </div>
-            <form class="mt-0">
-              <fieldset class="mt-5">
-                <legend class="text-lg font-bold text-slate-700">
-                  Band Color
-                </legend>
-                <div class="flex flex-wrap gap-4 mt-3">
-                  <div class="flex flex-col self-stretch my-auto w-6">
-                    <input
-                      type="radio"
-                      id="violet"
-                      name="bandColor"
-                      class="sr-only"
-                      checked
-                    />
-                    <label
-                      for="violet"
-                      class="flex flex-col justify-center px-0.5 py-0.5 rounded-full border-2 border-violet-500 border-solid cursor-pointer"
+
+            <div class="w-full lg:w-1/2 space-y-6">
+              <h1 class="text-2xl sm:text-3xl font-bold text-slate-700">
+                Classy Modern Smart watch
+              </h1>
+
+              <div class="flex flex-wrap gap-2 items-center">
+                <div class="flex gap-1.5 items-start flex-row">
+                  <template id="starTemplate">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="#ffd200"
+                      viewBox="0 0 256 256"
                     >
-                      <div
-                        class="flex shrink-0 w-4 h-4 bg-violet-500 rounded-full"
-                      ></div>
-                    </label>
-                  </div>
-                  <div class="flex flex-col self-stretch my-auto w-4">
-                    <input
-                      type="radio"
-                      id="teal"
-                      name="bandColor"
-                      class="sr-only"
-                    />
-                    <label for="teal" class="cursor-pointer">
-                      <div
-                        class="flex shrink-0 w-4 h-4 bg-teal-400 rounded-full"
-                      ></div>
-                    </label>
-                  </div>
-                  <div class="flex flex-col self-stretch my-auto w-4">
-                    <input
-                      type="radio"
-                      id="blue"
-                      name="bandColor"
-                      class="sr-only"
-                    />
-                    <label for="blue" class="cursor-pointer">
-                      <div
-                        class="flex shrink-0 w-4 h-4 bg-blue-500 rounded-full"
-                      ></div>
-                    </label>
-                  </div>
-                  <div class="flex flex-col self-stretch my-auto w-4">
-                    <input
-                      type="radio"
-                      id="black"
-                      name="bandColor"
-                      class="sr-only"
-                    />
-                    <label for="black" class="cursor-pointer">
-                      <div
-                        class="flex shrink-0 w-4 h-4 rounded-full bg-zinc-700"
-                      ></div>
-                    </label>
-                  </div>
+                      <path
+                        d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"
+                      />
+                    </svg>
+                  </template>
+                  <div id="starsContainer" class="flex flex-row"></div>
                 </div>
-              </fieldset>
-              <fieldset class="mt-5">
-                <legend class="text-lg font-bold text-slate-700">
-                  Wrist Size
-                </legend>
-                <div class="flex flex-wrap gap-3 mt-3">
-                  <input
-                    type="radio"
-                    id="size-s"
-                    name="wristSize"
-                    class="sr-only"
-                    checked
-                  />
-                  <label
-                    for="size-s"
-                    class="overflow-hidden gap-2.5 self-stretch px-5 py-2 my-auto rounded border border-indigo-500 border-solid text-slate-400 cursor-pointer"
-                  >
-                    <span class="text-sm text-indigo-500">S</span>
-                    <span class="text-xs text-slate-400">$69</span>
-                  </label>
-                  <input
-                    type="radio"
-                    id="size-m"
-                    name="wristSize"
-                    class="sr-only"
-                  />
-                  <label
-                    for="size-m"
-                    class="overflow-hidden gap-2.5 self-stretch px-5 py-2 my-auto rounded border border-solid border-zinc-200 cursor-pointer"
-                  >
-                    <span class="text-sm">M</span>
-                    <span class="text-xs text-slate-400">$79</span>
-                  </label>
-                  <input
-                    type="radio"
-                    id="size-l"
-                    name="wristSize"
-                    class="sr-only"
-                  />
-                  <label
-                    for="size-l"
-                    class="overflow-hidden gap-2.5 self-stretch px-5 py-2 my-auto rounded border border-solid border-zinc-200 cursor-pointer"
-                  >
-                    <span class="text-sm">L</span>
-                    <span class="text-xs text-slate-400">$89</span>
-                  </label>
-                  <input
-                    type="radio"
-                    id="size-xl"
-                    name="wristSize"
-                    class="sr-only"
-                  />
-                  <label
-                    for="size-xl"
-                    class="overflow-hidden gap-2.5 self-stretch px-5 py-2 my-auto rounded border border-solid border-zinc-200 cursor-pointer"
-                  >
-                    <span class="text-sm">XL</span>
-                    <span class="text-xs text-slate-400">$99</span>
-                  </label>
+                <span class="text-sm text-slate-400">(2 Reviews)</span>
+              </div>
+
+              <div class="flex items-baseline gap-2 mt-4">
+                <span class="text-xl text-slate-400 line-through">$99.00</span>
+                <span class="text-2xl font-bold text-indigo-500">$79.00</span>
+              </div>
+
+              <p class="mt-4 text-lg text-slate-400">
+                I must explain to you how all this mistaken idea of denouncing
+                pleasure praising pain was born and I will give you a complete
+                account of the system, and expound the actual teaching.
+              </p>
+
+              <div class="flex flex-col md:flex-row gap-6 mt-5">
+                <div class="flex flex-col">
+                  <span class="text-sm text-slate-400">Type</span>
+                  <span class="text-base font-bold text-slate-700">Watch</span>
                 </div>
-              </fieldset>
-              <div class="flex flex-col sm:flex-row gap-4 mt-5 items-center">
-                <div class="flex items-center border rounded">
-                  <button
-                    type="button"
-                    aria-label="Decrease quantity"
-                    class="px-3 py-2 border-r"
+                <div class="flex flex-col">
+                  <span class="text-sm text-slate-400">Model Number</span>
+                  <span class="text-base font-bold text-slate-700"
+                    >Forerunner 290XT</span
                   >
-                    -
-                  </button>
-                  <input
-                    type="number"
-                    value="1"
-                    min="0"
-                    aria-label="Product quantity"
-                    class="w-16 text-center border-t border-b focus:outline-none border-none"
-                  />
+                </div>
+              </div>
+
+              <form id="addToCartForm" class="space-y-6">
+                <fieldset class="mt-5">
+                  <legend class="text-lg font-bold text-slate-700">
+                    Band Color
+                  </legend>
+                  <div
+                    id="colorSelector"
+                    class="flex flex-wrap gap-4 mt-3"
+                  ></div>
+                </fieldset>
+
+                <fieldset class="mt-5">
+                  <legend class="text-lg font-bold text-slate-700">
+                    Wrist Size
+                  </legend>
+                  <div
+                    id="sizeSelector"
+                    class="flex flex-wrap gap-3 mt-3"
+                  ></div>
+                </fieldset>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                  <div class="flex items-center border rounded">
+                    <button
+                      type="button"
+                      id="decreaseQuantity"
+                      class="px-3 py-2 border-r"
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      id="quantity"
+                      value="1"
+                      min="1"
+                      class="w-16 text-center border-t border-b focus:outline-none border-none pl-2"
+                    />
+                    <button
+                      type="button"
+                      id="increaseQuantity"
+                      class="px-3 py-2 border-l"
+                    >
+                      +
+                    </button>
+                  </div>
+
                   <button
-                    type="button"
-                    aria-label="Increase quantity"
-                    class="px-3 py-2 border-l"
+                    type="submit"
+                    class="w-full sm:w-auto px-6 py-3 bg-indigo-500 text-white font-semibold rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
-                    +
+                    Add to Cart
                   </button>
                 </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="checkoutButton"
+          class="hidden fixed bottom-0 left-0 right-0 shadow-3xl flex justify-center p-4 bg-transparent"
+        >
+          <button
+            class="w-auto flex items-center justify-center gap-2 px-6 py-3 bg-orange-400 text-black rounded-3xl font-bold"
+          >
+            <span>Checkout</span>
+            <span
+              id="cartCount"
+              class="bg-white text-black px-2 py-1 rounded-lg text-sm"
+              >0</span
+            >
+          </button>
+        </div>
+
+        <div
+          id="cartModal"
+          class="hidden fixed inset-0 z-50 px-4 flex overflow-hidden flex-col justify-center items-center font-bold leading-6 bg-neutral-900 bg-opacity-60"
+        >
+          <div
+            class="flex flex-col p-11 mx-4 max-h-[90vh] overflow-y-auto max-w-full max-md:mx-auto w-[651px] bg-white rounded-3xl max-md:p-6 max-sm:p-4"
+            role="region"
+            aria-label="Cart Details"
+          >
+            <div
+              class="flex gap-2.5 items-center self-start text-2xl leading-none text-slate-700"
+            >
+              <h1 class="flex flex-col self-stretch my-auto">Your Cart</h1>
+            </div>
+
+            <div
+              class="flex flex-wrap font-normal items-center pt-1 pr-1 pb-2 mt-4 w-full text-sm border-b border-zinc-200 text-slate-400 max-md:max-w-full"
+              role="row"
+              aria-label="Cart Header"
+            >
+              <div
+                class="grow shrink self-stretch my-auto w-[266px] max-sm:w-full max-sm:mb-2 max-sm:hidden"
+                role="columnheader"
+              >
+                Item
+              </div>
+              <div
+                class="grow shrink self-stretch my-auto text-center w-[50px] max-sm:w-1/4"
+                role="columnheader"
+              >
+                Color
+              </div>
+              <div
+                class="grow shrink self-stretch my-auto text-center w-[57px] max-sm:w-1/4"
+                role="columnheader"
+              >
+                Size
+              </div>
+              <div
+                class="grow shrink self-stretch my-auto text-center w-[47px] max-sm:w-1/4"
+                role="columnheader"
+              >
+                Qnt
+              </div>
+              <div
+                class="grow shrink self-stretch my-auto text-right w-[79px] max-sm:w-1/4"
+                role="columnheader"
+              >
+                Price
+              </div>
+            </div>
+
+            <div id="cartItemsContainer"></div>
+
+            <div
+              class="flex flex-wrap gap-5 justify-between items-end mt-4 w-full tracking-normal leading-9 whitespace-nowrap text-slate-700 max-md:max-w-full"
+              role="row"
+              aria-label="Cart Total"
+            >
+              <div
+                class="text-base leading-none text-neutral-700 w-[379px] max-sm:w-full"
+              >
+                Total
+              </div>
+              <div id="totalQuantity" class="text-sm"></div>
+              <div id="totalPrice" class="text-lg"></div>
+            </div>
+
+            <div
+              class="flex justify-end pt-2.5 mt-4 w-full text-sm tracking-wide leading-loose max-md:max-w-full"
+            >
+              <div
+                class="flex gap-6 max-md:gap-2 items-center flex-wrap max-sm:w-full max-sm:justify-center"
+              >
                 <button
-                  type="submit"
-                  class="flex-grow sm:flex-grow-0 px-5 py-2 bg-indigo-500 text-white font-bold rounded"
+                  id="continueShopping"
+                  class="overflow-hidden gap-2.5 px-5 py-2 rounded border border-solid border-zinc-200 text-slate-700 max-sm:w-full max-sm:mb-2"
+                  aria-label="Continue Shopping"
                 >
-                  Add to Cart
+                  Continue Shopping
                 </button>
                 <button
-                  type="button"
-                  aria-label="Add to Wishlist"
-                  class="text-2xl text-indigo-500"
+                  id="modalCheckoutButton"
+                  class="overflow-hidden gap-2.5 px-5 py-2 text-white whitespace-nowrap bg-indigo-500 rounded max-sm:w-full"
+                  aria-label="Proceed to Checkout"
                 >
-                  ♡
+                  Checkout
                 </button>
               </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div
-        class="flex justify-center fixed bottom-0 left-0 items-center py-5 w-full bg-transparent shadow-lg sm:hidden"
-        style="display: none"
-      >
-        <button
-          type="button"
-          class="floating-checkout flex items-center px-6 py-3 bg-orange-300 rounded-3xl shadow-sm"
-        >
-          <span class="text-sm">Checkout</span>
-          <span class="ml-2 px-2 py-0.5 text-xs bg-white rounded-md">0</span>
-        </button>
-      </div>
-    </div>
-    <div
-      id="modal"
-      class="flex overflow-hidden fixed right-0 top-0 h-screen w-screen z-0 flex-col justify-center items-center font-bold leading-6 bg-neutral-900 bg-opacity-60"
-      style="z-index: 0"
-    >
-      <div
-        class="flex flex-col p-11 mx-4 max-w-full max-md:w-[90%] max-md:mx-auto w-[651px] bg-white rounded-3xl max-md:p-6 max-sm:p-4"
-        role="region"
-        aria-label="Cart Details"
-      >
-        <div
-          class="flex gap-2.5 items-center self-start text-2xl leading-none text-slate-700"
-        >
-          <h1 class="flex flex-col self-stretch my-auto">Your Cart</h1>
-        </div>
-        <div
-          class="flex flex-wrap font-normal items-center pt-1 pr-1 pb-2 mt-4 w-full text-sm border-b border-zinc-200 text-slate-400 max-md:max-w-full"
-          role="row"
-          aria-label="Cart Header"
-        >
-          <div
-            class="grow shrink self-stretch my-auto w-[266px] max-sm:w-full max-sm:mb-2 max-sm:hidden"
-            role="columnheader"
-          >
-            Item
-          </div>
-          <div
-            class="grow shrink self-stretch my-auto text-center w-[50px] max-sm:w-1/4"
-            role="columnheader"
-          >
-            Color
-          </div>
-          <div
-            class="grow shrink self-stretch my-auto text-center w-[57px] max-sm:w-1/4"
-            role="columnheader"
-          >
-            Size
-          </div>
-          <div
-            class="grow shrink self-stretch my-auto text-center w-[47px] max-sm:w-1/4"
-            role="columnheader"
-          >
-            Qnt
-          </div>
-          <div
-            class="grow shrink self-stretch my-auto text-right w-[79px] max-sm:w-1/4"
-            role="columnheader"
-          >
-            Price
-          </div>
-        </div>
-        <div class="cart-items-container"></div>
-        <div
-          class="flex flex-wrap gap-5 justify-between items-end mt-4 w-full tracking-normal leading-9 whitespace-nowrap text-slate-700 max-md:max-w-full"
-          role="row"
-          aria-label="Cart Total"
-        >
-          <div
-            class="text-base leading-none text-neutral-700 w-[379px] max-sm:w-full"
-          >
-            Total
-          </div>
-          <div class="total-quantity text-sm">0</div>
-          <div class="total-price text-lg">$0.00</div>
-        </div>
-        <div
-          class="flex justify-end pt-2.5 mt-4 w-full text-sm tracking-wide leading-loose max-md:max-w-full"
-          id="cart-actions"
-        >
-          <div
-            class="flex gap-6 items-center flex-wrap max-sm:w-full max-sm:justify-center"
-          >
-            <button
-              class="overflow-hidden gap-2.5 px-5 py-2 rounded border border-solid border-zinc-200 text-slate-700 max-sm:w-full max-sm:mb-2"
-              aria-label="Continue Shopping"
-            >
-              Continue Shopping
-            </button>
-            <button
-              class="overflow-hidden gap-2.5 px-5 py-2 text-white whitespace-nowrap bg-indigo-500 rounded max-sm:w-full"
-              aria-label="Proceed to Checkout"
-            >
-              Checkout
-            </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="./index.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
