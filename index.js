@@ -5,6 +5,7 @@ const store = {
   state: {
     selectedColor: product.variants.colors[0].id,
     selectedSize: product.variants.sizes[0].id,
+    selectedRating: product.rating.score,
     quantity: 1,
     cartItems: [],
   },
@@ -27,6 +28,41 @@ const ProductImage = {
       (c) => c.id === state.selectedColor
     );
     document.getElementById("productImage").src = color.image;
+  },
+};
+
+const ProductRating = {
+  starSvg: {
+    filled: `<svg class="w-4 h-4 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+    </svg>`,
+    empty: `<svg class="w-4 h-4 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+    </svg>`,
+  },
+
+  render: (state) => {
+    const container = document.getElementById("starsContainer");
+    const maxStars = 5;
+    const score = product.rating.score;
+    const count = product.rating.count;
+
+    let starsHtml = "";
+
+    // Generate filled and empty stars based on score
+    for (let i = 1; i <= maxStars; i++) {
+      if (i <= score) {
+        starsHtml += ProductRating.starSvg.filled;
+      } else {
+        starsHtml += ProductRating.starSvg.empty;
+      }
+    }
+
+    container.innerHTML = `
+      <div class="flex gap-1">
+        ${starsHtml}
+      </div>
+    `;
   },
 };
 
@@ -142,8 +178,8 @@ const Cart = {
         .map(
           (item) => `
         <div class="flex flex-wrap items-center py-4 border-b border-zinc-200" role="row">
-          <div class="grow shrink self-stretch my-auto w-[266px] max-sm:w-full">
-            ${item.name} - ${item.color} - ${item.size}
+          <div class="grow shrink self-stretch my-auto w-[266px] max-sm:hidden">
+            ${item.name}
           </div>
           <div class="grow shrink self-stretch my-auto text-center w-[50px]">
             ${item.color}
@@ -215,12 +251,17 @@ function setupModalControls() {
   const cartModal = document.getElementById("cartModal");
   const checkoutButton = document.getElementById("checkoutButton");
   const continueShopping = document.getElementById("continueShopping");
+  const modalCheckoutButton = document.getElementById("modalCheckoutButton");
 
   checkoutButton.addEventListener("click", () => {
     cartModal.classList.remove("hidden");
   });
 
   continueShopping.addEventListener("click", () => {
+    cartModal.classList.add("hidden");
+  });
+
+  modalCheckoutButton.addEventListener("click", () => {
     cartModal.classList.add("hidden");
   });
 
@@ -238,6 +279,7 @@ function init() {
   ColorSelector.render(store.state);
   SizeSelector.render(store.state);
   QuantityControl.render(store.state);
+  ProductRating.render(store.state);
   Cart.render(store.state);
 
   // Setup listeners
@@ -252,6 +294,7 @@ function init() {
     SizeSelector.render(state);
     QuantityControl.render(state);
     Cart.render(state);
+    ProductRating.render(state);
   });
 }
 
