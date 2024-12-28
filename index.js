@@ -1,281 +1,259 @@
-const COLORS = [
-  { id: "violet", bgClass: "bg-violet-500", borderColor: "#8b5cf6" },
-  { id: "teal", bgClass: "bg-teal-400", borderColor: "#2dd4bf" },
-  { id: "blue", bgClass: "bg-blue-500", borderColor: "#3b82f6" },
-  { id: "black", bgClass: "bg-zinc-700", borderColor: "#3f3f46" },
-];
+import { product } from "./product.js";
 
-const SIZES = [
-  { id: "S", price: 69 },
-  { id: "M", price: 79 },
-  { id: "L", price: 89 },
-  { id: "XL", price: 99 },
-];
+// State management
+const store = {
+  state: {
+    selectedColor: product.variants.colors[0].id,
+    selectedSize: product.variants.sizes[0].id,
+    quantity: 1,
+    cartItems: [],
+  },
+  listeners: new Set(),
 
-const COLOR_MAP = {
-  violet: "./assets/1.png",
-  teal: "./assets/2.png",
-  blue: "./assets/3.png",
-  black: "./assets/4.png",
+  setState(newState) {
+    this.state = { ...this.state, ...newState };
+    this.notify();
+  },
+
+  notify() {
+    this.listeners.forEach((listener) => listener(this.state));
+  },
 };
 
-let state = {
-  selectedColor: "violet",
-  selectedSize: "S",
-  quantity: 1,
-  cartItems: [],
+// Components
+const ProductImage = {
+  render: (state) => {
+    const color = product.variants.colors.find(
+      (c) => c.id === state.selectedColor
+    );
+    document.getElementById("productImage").src = color.image;
+  },
 };
 
-const productImage = document.getElementById("productImage");
-const colorSelector = document.getElementById("colorSelector");
-const sizeSelector = document.getElementById("sizeSelector");
-const quantityInput = document.getElementById("quantity");
-const addToCartForm = document.getElementById("addToCartForm");
-const checkoutButton = document.getElementById("checkoutButton");
-const cartModal = document.getElementById("cartModal");
-const cartCount = document.getElementById("cartCount");
-
-function init() {
-  renderStars();
-  renderColorSelector();
-  renderSizeSelector();
-  updateProductImage();
-  setupEventListeners();
-}
-
-function renderStars() {
-  const starsContainer = document.getElementById("starsContainer");
-  const starTemplate = document.getElementById("starTemplate");
-  for (let i = 0; i < 5; i++) {
-    starsContainer.appendChild(starTemplate.content.cloneNode(true));
-  }
-}
-
-function renderColorSelector() {
-  colorSelector.innerHTML = COLORS.map(
-    (color) => `
-        <div class="flex flex-col self-stretch my-auto w-6">
-            <input type="radio" id="${
-              color.id
-            }" name="bandColor" class="sr-only" 
-                   ${state.selectedColor === color.id ? "checked" : ""}>
-            <label for="${color.id}" 
-                   class="flex flex-col justify-center px-0.5 py-0.5 rounded-full cursor-pointer 
-                   ${
-                     state.selectedColor === color.id
-                       ? `border-2 border-solid border-[${color.borderColor}]`
-                       : ""
-                   }">
-                <div class="flex shrink-0 w-4 h-4 ${
-                  color.bgClass
-                } rounded-full"></div>
-            </label>
-        </div>
-    `
-  ).join("");
-}
-
-function renderSizeSelector() {
-  sizeSelector.innerHTML = SIZES.map(
-    (size) => `
-        <div>
-            <input type="radio" id="size-${size.id.toLowerCase()}" name="wristSize" class="sr-only"
-                   ${state.selectedSize === size.id ? "checked" : ""}>
-            <label for="size-${size.id.toLowerCase()}"
-                   class="overflow-hidden gap-2.5 self-stretch px-5 py-2 my-auto rounded border border-solid cursor-pointer
-                   ${
-                     state.selectedSize === size.id
-                       ? "border-indigo-500"
-                       : "border-zinc-200 text-slate-400"
-                   }">
-                <span class="text-sm font-medium ${
-                  state.selectedSize === size.id
-                    ? "text-indigo-500"
-                    : "text-black"
-                }">
-                    ${size.id}
-                </span>
-                <span class="text-xs text-slate-400">$${size.price}</span>
-            </label>
-        </div>
-    `
-  ).join("");
-}
-
-function updateProductImage() {
-  productImage.src = COLOR_MAP[state.selectedColor];
-}
-
-function setupEventListeners() {
-  colorSelector.addEventListener("change", (e) => {
-    if (e.target.type === "radio") {
-      state.selectedColor = e.target.id;
-      updateProductImage();
-      renderColorSelector();
-    }
-  });
-
-  sizeSelector.addEventListener("change", (e) => {
-    if (e.target.type === "radio") {
-      state.selectedSize = e.target.id.split("-")[1].toUpperCase();
-      renderSizeSelector();
-    }
-  });
-
-  document.getElementById("decreaseQuantity").addEventListener("click", () => {
-    state.quantity = Math.max(1, state.quantity - 1);
-    quantityInput.value = state.quantity;
-  });
-
-  document.getElementById("increaseQuantity").addEventListener("click", () => {
-    state.quantity++;
-    quantityInput.value = state.quantity;
-  });
-
-  quantityInput.addEventListener("change", (e) => {
-    state.quantity = Math.max(1, parseInt(e.target.value));
-    quantityInput.value = state.quantity;
-  });
-
-  addToCartForm.addEventListener("submit", handleAddToCart);
-
-  checkoutButton.addEventListener("click", () => {
-    renderCartModal();
-    openCartModal();
-  });
-
-  document
-    .getElementById("continueShopping")
-    .addEventListener("click", closeCartModal);
-
-  cartModal.addEventListener("click", (e) => {
-    if (e.target === cartModal) {
-      closeCartModal();
-    }
-  });
-
-  cartModal
-    .querySelector("div[role='region']")
-    .addEventListener("click", (e) => {
-      e.stopPropagation();
-    });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !cartModal.classList.contains("hidden")) {
-      closeCartModal();
-    }
-  });
-
-  document
-    .getElementById("modalCheckoutButton")
-    .addEventListener("click", () => {
-      alert("Proceeding to checkout");
-      closeCartModal();
-    });
-}
-
-function handleAddToCart(e) {
-  e.preventDefault();
-  const price =
-    SIZES.find((s) => s.id === state.selectedSize).price * state.quantity;
-  const newItem = {
-    color: state.selectedColor,
-    size: state.selectedSize,
-    quantity: state.quantity,
-    price,
-    image: COLOR_MAP[state.selectedColor],
-  };
-
-  state.cartItems.push(newItem);
-  state.quantity = 1;
-  quantityInput.value = 1;
-  updateCartUI();
-}
-
-function updateCartUI() {
-  const totalItems = state.cartItems.reduce(
-    (sum, item) => sum + item.quantity,
-    0
-  );
-  cartCount.textContent = totalItems;
-  checkoutButton.classList.toggle("hidden", state.cartItems.length === 0);
-}
-
-function renderCartModal() {
-  const container = document.getElementById("cartItemsContainer");
-  const totalQuantityEl = document.getElementById("totalQuantity");
-  const totalPriceEl = document.getElementById("totalPrice");
-  const modalCheckoutButton = document.getElementById("modalCheckoutButton");
-
-  if (state.cartItems.length === 0) {
-    container.innerHTML = `
-      <div class="text-center py-8 text-slate-500">
-        Your cart is empty
-      </div>
-    `;
-    totalQuantityEl.textContent = "0";
-    totalPriceEl.textContent = "$0.00";
-    modalCheckoutButton.disabled = true;
-    modalCheckoutButton.classList.add("opacity-50", "cursor-not-allowed");
-  } else {
-    container.innerHTML = state.cartItems
+const ColorSelector = {
+  render: (state) => {
+    const container = document.getElementById("colorSelector");
+    container.innerHTML = product.variants.colors
       .map(
-        (item, index) => `
-      <div
-        class="flex flex-wrap items-center py-4 w-full text-sm border-b border-zinc-200"
-        role="row"
-      >
-        <div class="flex items-center gap-4 grow shrink w-[266px] max-sm:w-full max-sm:mb-2">
-          <img
-            src="${item.image}"
-            alt="${item.color} watch"
-            class="w-16 h-16 object-cover rounded"
-          />
-          <span class="text-sm font-normal text-gray-900">
-            Classy Modern Smart watch
-          </span>
-        </div>
-        <div class="grow shrink text-center font-normal w-[50px] max-sm:w-1/4">
-          ${item.color}
-        </div>
-        <div class="grow shrink text-center w-[57px] max-sm:w-1/4">
-          ${item.size}
-        </div>
-        <div class="grow shrink text-center w-[47px] max-sm:w-1/4">
-          ${item.quantity}
-        </div>
-        <div class="grow shrink text-right w-[79px] max-sm:w-1/4">
-          $${item.price.toFixed(2)}
-        </div>
-      </div>
+        (color) => `
+      <label class="relative cursor-pointer">
+        <input
+          type="radio"
+          name="color"
+          value="${color.id}"
+          class="sr-only peer"
+          ${state.selectedColor === color.id ? "checked" : ""}
+        />
+        <div class="w-4 h-4 rounded-full ${
+          color.bgClass
+        } peer-checked:ring-2 ring-offset-2 ring-indigo-600"></div>
+      </label>
     `
       )
       .join("");
 
-    const totalQuantity = state.cartItems.reduce(
+    // Add event listeners
+    container.querySelectorAll('input[name="color"]').forEach((input) => {
+      input.addEventListener("change", (e) => {
+        store.setState({ selectedColor: e.target.value });
+      });
+    });
+  },
+};
+
+const SizeSelector = {
+  render: (state) => {
+    const container = document.getElementById("sizeSelector");
+    container.innerHTML = product.variants.sizes
+      .map(
+        (size) => `
+      <label class="relative cursor-pointer">
+        <input
+          type="radio"
+          name="size"
+          value="${size.id}"
+          class="sr-only peer"
+          ${state.selectedSize === size.id ? "checked" : ""}
+        />
+        <div class="px-3 py-2 border rounded peer-checked:border-indigo-600 peer-checked:text-indigo-600">
+          ${size.name}
+        </div>
+      </label>
+    `
+      )
+      .join("");
+
+    // Add event listeners
+    container.querySelectorAll('input[name="size"]').forEach((input) => {
+      input.addEventListener("change", (e) => {
+        store.setState({ selectedSize: e.target.value });
+      });
+    });
+  },
+};
+
+const QuantityControl = {
+  render: (state) => {
+    const quantityInput = document.getElementById("quantity");
+    quantityInput.value = state.quantity;
+  },
+
+  setupListeners: () => {
+    const decreaseBtn = document.getElementById("decreaseQuantity");
+    const increaseBtn = document.getElementById("increaseQuantity");
+    const quantityInput = document.getElementById("quantity");
+
+    decreaseBtn.addEventListener("click", () => {
+      const newQuantity = Math.max(1, store.state.quantity - 1);
+      store.setState({ quantity: newQuantity });
+    });
+
+    increaseBtn.addEventListener("click", () => {
+      store.setState({ quantity: store.state.quantity + 1 });
+    });
+
+    quantityInput.addEventListener("change", (e) => {
+      const value = parseInt(e.target.value) || 1;
+      const newQuantity = Math.max(1, value);
+      store.setState({ quantity: newQuantity });
+    });
+  },
+};
+
+const Cart = {
+  render: (state) => {
+    const cartCount = document.getElementById("cartCount");
+    const checkoutButton = document.getElementById("checkoutButton");
+    const cartItemsContainer = document.getElementById("cartItemsContainer");
+    const totalQuantity = document.getElementById("totalQuantity");
+    const totalPrice = document.getElementById("totalPrice");
+
+    // Update cart count and visibility
+    const totalItems = state.cartItems.reduce(
       (sum, item) => sum + item.quantity,
       0
     );
-    const totalPrice = state.cartItems.reduce(
-      (sum, item) => sum + item.price,
-      0
+    cartCount.textContent = totalItems;
+    checkoutButton.style.display = totalItems > 0 ? "flex" : "none";
+
+    // Update cart items
+    if (cartItemsContainer) {
+      cartItemsContainer.innerHTML = state.cartItems
+        .map(
+          (item) => `
+        <div class="flex flex-wrap items-center py-4 border-b border-zinc-200" role="row">
+          <div class="grow shrink self-stretch my-auto w-[266px] max-sm:w-full">
+            ${item.name} - ${item.color} - ${item.size}
+          </div>
+          <div class="grow shrink self-stretch my-auto text-center w-[50px]">
+            ${item.color}
+          </div>
+          <div class="grow shrink self-stretch my-auto text-center w-[57px]">
+            ${item.size}
+          </div>
+          <div class="grow shrink self-stretch my-auto text-center w-[47px]">
+            ${item.quantity}
+          </div>
+          <div class="grow shrink self-stretch my-auto text-right w-[79px]">
+            $${(item.price * item.quantity).toFixed(2)}
+          </div>
+        </div>
+      `
+        )
+        .join("");
+
+      // Update totals
+      const total = state.cartItems.reduce(
+        (sum, item) => sum + item.price * item.quantity,
+        0
+      );
+      totalQuantity.textContent = `${totalItems} items`;
+      totalPrice.textContent = `$${total.toFixed(2)}`;
+    }
+  },
+};
+
+// Setup form submission
+function setupFormListener() {
+  const form = document.getElementById("addToCartForm");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const selectedColor = product.variants.colors.find(
+      (c) => c.id === store.state.selectedColor
+    );
+    const selectedSize = product.variants.sizes.find(
+      (s) => s.id === store.state.selectedSize
     );
 
-    totalQuantityEl.textContent = totalQuantity;
-    totalPriceEl.textContent = `$${totalPrice.toFixed(2)}`;
+    const newItem = {
+      id: `${product.id}-${selectedColor.id}-${selectedSize.id}`,
+      name: product.name,
+      color: selectedColor.name,
+      size: selectedSize.name,
+      quantity: store.state.quantity,
+      price: selectedSize.price,
+    };
 
-    modalCheckoutButton.disabled = false;
-    modalCheckoutButton.classList.remove("opacity-50", "cursor-not-allowed");
-  }
+    const updatedCart = [...store.state.cartItems];
+    const existingItemIndex = updatedCart.findIndex(
+      (item) => item.id === newItem.id
+    );
+
+    if (existingItemIndex >= 0) {
+      updatedCart[existingItemIndex].quantity += newItem.quantity;
+    } else {
+      updatedCart.push(newItem);
+    }
+
+    store.setState({ cartItems: updatedCart });
+  });
 }
 
-function openCartModal() {
-  cartModal.classList.remove("hidden");
-  cartModal.querySelector("#continueShopping").focus();
+// Modal controls
+function setupModalControls() {
+  const cartModal = document.getElementById("cartModal");
+  const checkoutButton = document.getElementById("checkoutButton");
+  const continueShopping = document.getElementById("continueShopping");
+
+  checkoutButton.addEventListener("click", () => {
+    cartModal.classList.remove("hidden");
+  });
+
+  continueShopping.addEventListener("click", () => {
+    cartModal.classList.add("hidden");
+  });
+
+  cartModal.addEventListener("click", (e) => {
+    if (e.target === cartModal) {
+      cartModal.classList.add("hidden");
+    }
+  });
 }
 
-function closeCartModal() {
-  cartModal.classList.add("hidden");
+// Initialize the application
+function init() {
+  // Initial render
+  ProductImage.render(store.state);
+  ColorSelector.render(store.state);
+  SizeSelector.render(store.state);
+  QuantityControl.render(store.state);
+  Cart.render(store.state);
+
+  // Setup listeners
+  QuantityControl.setupListeners();
+  setupFormListener();
+  setupModalControls();
+
+  // Subscribe to state changes
+  store.listeners.add((state) => {
+    ProductImage.render(state);
+    ColorSelector.render(state);
+    SizeSelector.render(state);
+    QuantityControl.render(state);
+    Cart.render(state);
+  });
 }
 
+// Start the application
 init();

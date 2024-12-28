@@ -3,79 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Single Product Page</title>
+    <meta
+      name="description"
+      content="Discover the Classy Modern Smart Watch - Forerunner 290XT. Premium quality smartwatch with customizable band colors and sizes."
+    />
+    <meta
+      name="keywords"
+      content="smartwatch, Forerunner 290XT, modern watch, smart wearable"
+    />
+    <link
+      rel="canonical"
+      href="https://yourwebsite.com/products/smart-watch-290xt"
+    />
+    <title>Classy Modern Smart Watch - Forerunner 290XT | Your Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div class="min-h-screen bg-gray-50">
-      <div
+    <main class="min-h-screen bg-gray-50">
+      <article
         class="relative min-h-screen bg-white px-4 sm:px-6 lg:px-8 max-md:pb-20"
+        itemscope
+        itemtype="http://schema.org/Product"
       >
         <div class="mx-auto max-w-7xl py-8">
           <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
-            <div class="w-full lg:w-1/2">
+            <!-- Product Image Gallery Component -->
+            <section class="w-full lg:w-1/2" aria-label="Product images">
               <div
                 class="aspect-square relative overflow-hidden rounded-md bg-gray-100"
               >
                 <img
                   id="productImage"
+                  itemprop="image"
                   alt="Classy Modern Smart Watch Product Image"
                   class="h-full w-full object-cover object-center"
                   src="./assets/1.png"
                 />
               </div>
-            </div>
+            </section>
 
-            <div class="w-full lg:w-1/2 space-y-6">
-              <h1 class="text-2xl sm:text-3xl font-bold text-slate-700">
+            <!-- Product Details Component -->
+            <section class="w-full lg:w-1/2 space-y-6">
+              <h1
+                class="text-2xl sm:text-3xl font-bold text-slate-700"
+                itemprop="name"
+              >
                 Classy Modern Smart watch
               </h1>
 
-              <div class="flex flex-wrap gap-2 items-center">
-                <div class="flex gap-1.5 items-start flex-row">
-                  <template id="starTemplate">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="#ffd200"
-                      viewBox="0 0 256 256"
-                    >
-                      <path
-                        d="M234.29,114.85l-45,38.83L203,211.75a16.4,16.4,0,0,1-24.5,17.82L128,198.49,77.47,229.57A16.4,16.4,0,0,1,53,211.75l13.76-58.07-45-38.83A16.46,16.46,0,0,1,31.08,86l59-4.76,22.76-55.08a16.36,16.36,0,0,1,30.27,0l22.75,55.08,59,4.76a16.46,16.46,0,0,1,9.37,28.86Z"
-                      />
-                    </svg>
-                  </template>
-                  <div id="starsContainer" class="flex flex-row"></div>
+              <!-- Rating Component -->
+              <div
+                class="flex flex-wrap gap-2 items-center"
+                itemprop="aggregateRating"
+                itemscope
+                itemtype="http://schema.org/AggregateRating"
+              >
+                <div
+                  class="flex gap-1.5 items-start flex-row"
+                  id="starsContainer"
+                >
+                  <!-- Stars will be injected here -->
                 </div>
-                <span class="text-sm text-slate-400">(2 Reviews)</span>
+                <span class="text-sm text-slate-400">
+                  (<span itemprop="reviewCount">2</span> Reviews)
+                </span>
               </div>
 
+              <!-- Price Component -->
               <div class="flex items-baseline gap-2 mt-4">
+                <meta itemprop="priceCurrency" content="USD" />
                 <span class="text-xl text-slate-400 line-through">$99.00</span>
-                <span class="text-2xl font-bold text-indigo-500">$79.00</span>
+                <span
+                  class="text-2xl font-bold text-indigo-500"
+                  itemprop="price"
+                >
+                  $79.00
+                </span>
               </div>
 
-              <p class="mt-4 text-lg text-slate-400">
-                I must explain to you how all this mistaken idea of denouncing
-                pleasure praising pain was born and I will give you a complete
-                account of the system, and expound the actual teaching.
+              <!-- Product Description -->
+              <p class="mt-4 text-lg text-slate-400" itemprop="description">
+                <!-- Description from config -->
               </p>
 
-              <div class="flex flex-col md:flex-row gap-6 mt-5">
+              <!-- Product Specifications -->
+              <dl class="flex flex-col md:flex-row gap-6 mt-5">
                 <div class="flex flex-col">
-                  <span class="text-sm text-slate-400">Type</span>
-                  <span class="text-base font-bold text-slate-700">Watch</span>
+                  <dt class="text-sm text-slate-400">Type</dt>
+                  <dd class="text-base font-bold text-slate-700">Watch</dd>
                 </div>
                 <div class="flex flex-col">
-                  <span class="text-sm text-slate-400">Model Number</span>
-                  <span class="text-base font-bold text-slate-700"
-                    >Forerunner 290XT</span
+                  <dt class="text-sm text-slate-400">Model Number</dt>
+                  <dd
+                    class="text-base font-bold text-slate-700"
+                    itemprop="model"
                   >
+                    Forerunner 290XT
+                  </dd>
                 </div>
-              </div>
+              </dl>
 
+              <!-- Product Form Component -->
               <form id="addToCartForm" class="space-y-6">
+                <!-- Color Selector Component -->
                 <fieldset class="mt-5">
                   <legend class="text-lg font-bold text-slate-700">
                     Band Color
@@ -83,9 +113,14 @@
                   <div
                     id="colorSelector"
                     class="flex flex-wrap gap-4 mt-3"
-                  ></div>
+                    role="radiogroup"
+                    aria-label="Select band color"
+                  >
+                    <!-- Colors will be injected here -->
+                  </div>
                 </fieldset>
 
+                <!-- Size Selector Component -->
                 <fieldset class="mt-5">
                   <legend class="text-lg font-bold text-slate-700">
                     Wrist Size
@@ -93,9 +128,14 @@
                   <div
                     id="sizeSelector"
                     class="flex flex-wrap gap-3 mt-3"
-                  ></div>
+                    role="radiogroup"
+                    aria-label="Select wrist size"
+                  >
+                    <!-- Sizes will be injected here -->
+                  </div>
                 </fieldset>
 
+                <!-- Quantity and Add to Cart Component -->
                 <div class="flex flex-col sm:flex-row gap-4">
                   <div class="flex items-center border rounded">
                     <button
@@ -129,7 +169,7 @@
                   </button>
                 </div>
               </form>
-            </div>
+            </section>
           </div>
         </div>
 
@@ -241,8 +281,9 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <script src="index.js"></script>
+      </article>
+    </main>
+
+    <script type="module" src="index.js"></script>
   </body>
 </html>
