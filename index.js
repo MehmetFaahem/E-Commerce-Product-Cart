@@ -69,27 +69,21 @@ const ProductRating = {
 const ColorSelector = {
   render: (state) => {
     const container = document.getElementById("colorSelector");
-    container.innerHTML = product.variants.colors
-      .map(
-        (color) => `
-      <label class="relative cursor-pointer">
-        <input
-          type="radio"
-          name="color"
-          value="${color.id}"
-          class="sr-only peer"
-          ${state.selectedColor === color.id ? "checked" : ""}
-        />
-        <div class="w-4 h-4 rounded-full ${
-          color.bgClass
-        } peer-checked:ring-2 ring-offset-2 ring-indigo-600"></div>
-      </label>
-    `
-      )
-      .join("");
+    if (!container) return;
 
-    // Add event listeners
-    container.querySelectorAll('input[name="color"]').forEach((input) => {
+    // Update checked state based on selected color
+    const inputs = container.querySelectorAll('input[name="color"]');
+    inputs.forEach((input) => {
+      input.checked = input.value === state.selectedColor;
+    });
+  },
+
+  setupListeners: () => {
+    const container = document.getElementById("colorSelector");
+    if (!container) return;
+
+    const inputs = container.querySelectorAll('input[name="color"]');
+    inputs.forEach((input) => {
       input.addEventListener("change", (e) => {
         store.setState({ selectedColor: e.target.value });
       });
@@ -100,27 +94,21 @@ const ColorSelector = {
 const SizeSelector = {
   render: (state) => {
     const container = document.getElementById("sizeSelector");
-    container.innerHTML = product.variants.sizes
-      .map(
-        (size) => `
-      <label class="relative cursor-pointer">
-        <input
-          type="radio"
-          name="size"
-          value="${size.id}"
-          class="sr-only peer"
-          ${state.selectedSize === size.id ? "checked" : ""}
-        />
-        <div class="px-3 py-2 border rounded peer-checked:border-indigo-600 peer-checked:text-indigo-600">
-          ${size.name}
-        </div>
-      </label>
-    `
-      )
-      .join("");
+    if (!container) return;
 
-    // Add event listeners
-    container.querySelectorAll('input[name="size"]').forEach((input) => {
+    // Update checked state based on selected size
+    const inputs = container.querySelectorAll('input[name="size"]');
+    inputs.forEach((input) => {
+      input.checked = input.value === state.selectedSize;
+    });
+  },
+
+  setupListeners: () => {
+    const container = document.getElementById("sizeSelector");
+    if (!container) return;
+
+    const inputs = container.querySelectorAll('input[name="size"]');
+    inputs.forEach((input) => {
       input.addEventListener("change", (e) => {
         store.setState({ selectedSize: e.target.value });
       });
@@ -283,6 +271,8 @@ function init() {
   Cart.render(store.state);
 
   // Setup listeners
+  ColorSelector.setupListeners();
+  SizeSelector.setupListeners();
   QuantityControl.setupListeners();
   setupFormListener();
   setupModalControls();

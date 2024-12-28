@@ -112,11 +112,56 @@
                   </legend>
                   <div
                     id="colorSelector"
-                    class="flex flex-wrap gap-4 mt-3"
+                    class="flex gap-2 mt-3"
                     role="radiogroup"
                     aria-label="Select band color"
                   >
                     <!-- Colors will be injected here -->
+                    <label class="relative cursor-pointer">
+                      <input
+                        type="radio"
+                        name="color"
+                        value="violet"
+                        class="sr-only peer"
+                        checked
+                      />
+                      <div
+                        class="w-4 h-4 rounded-full bg-violet-500 peer-checked:ring-2 ring-offset-2 ring-indigo-600"
+                      ></div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                      <input
+                        type="radio"
+                        name="color"
+                        value="teal"
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="w-4 h-4 rounded-full bg-teal-400 peer-checked:ring-2 ring-offset-2 ring-indigo-600"
+                      ></div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                      <input
+                        type="radio"
+                        name="color"
+                        value="blue"
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="w-4 h-4 rounded-full bg-blue-500 peer-checked:ring-2 ring-offset-2 ring-indigo-600"
+                      ></div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                      <input
+                        type="radio"
+                        name="color"
+                        value="black"
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="w-4 h-4 rounded-full bg-zinc-700 peer-checked:ring-2 ring-offset-2 ring-indigo-600"
+                      ></div>
+                    </label>
                   </div>
                 </fieldset>
 
@@ -127,11 +172,64 @@
                   </legend>
                   <div
                     id="sizeSelector"
-                    class="flex flex-wrap gap-3 mt-3"
+                    class="flex gap-2 mt-3"
                     role="radiogroup"
                     aria-label="Select wrist size"
                   >
                     <!-- Sizes will be injected here -->
+                    <label class="relative cursor-pointer">
+                      <input
+                        type="radio"
+                        name="size"
+                        value="S"
+                        class="sr-only peer"
+                        checked
+                      />
+                      <div
+                        class="px-3 py-2 border rounded peer-checked:border-indigo-600 peer-checked:text-indigo-600"
+                      >
+                        Small
+                      </div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                      <input
+                        type="radio"
+                        name="size"
+                        value="M"
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="px-3 py-2 border rounded peer-checked:border-indigo-600 peer-checked:text-indigo-600"
+                      >
+                        Medium
+                      </div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                      <input
+                        type="radio"
+                        name="size"
+                        value="L"
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="px-3 py-2 border rounded peer-checked:border-indigo-600 peer-checked:text-indigo-600"
+                      >
+                        Large
+                      </div>
+                    </label>
+                    <label class="relative cursor-pointer">
+                      <input
+                        type="radio"
+                        name="size"
+                        value="XL"
+                        class="sr-only peer"
+                      />
+                      <div
+                        class="px-3 py-2 border rounded peer-checked:border-indigo-600 peer-checked:text-indigo-600"
+                      >
+                        XL
+                      </div>
+                    </label>
                   </div>
                 </fieldset>
 
