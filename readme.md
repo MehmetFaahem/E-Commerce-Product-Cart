@@ -2,7 +2,7 @@
 
 ## Live Demo
 
-- [Live Demo](https://e-commerce-product-cart-react-js.vercel.app/)
+- [Live Demo](https://mehmetfaahem.github.io/E-Commerce-Product-Cart/)
 
 ## ReactJS Repository
 
